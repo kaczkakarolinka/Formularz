@@ -18,7 +18,7 @@ body {
 
 .form-box {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 #title {
@@ -43,19 +43,19 @@ body {
     width: 500px;
     height: 100px;
     position: absolute;
-    top: 360px;
+    top: 340px;
 }
 
 #fake_button {
     position: absolute;
-    background-color: #42166a;
+    background-color: #9b00ff;
     width: 200px;
     height: 50px;
     border-radius: 20px;
     color: white;
     border-style: none;
-    top: 385px;
-    left: 350px;
+    top: 365px;
+    left: 255px;
 }
 
 #text_middle {
@@ -70,6 +70,7 @@ body {
 
 .titles {
     color: #42166a;
+    font-size: 23px;
 }
 
 label {
@@ -122,6 +123,20 @@ select:focus {
     outline: none;
 }
 
+#after::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #ff00a0;
+    right: 120px;
+    top: 220px;
+    z-index: -1;
+}
+
 #fee {
     margin-top: 15px;
 }
@@ -129,6 +144,7 @@ select:focus {
 .components {
     display: flex;
     flex-direction: column;
+    width: 500px;
 }
 
 #proceed {
