@@ -27,8 +27,9 @@ document.addEventListener("DOMContentLoaded", function(){
     })
 
     proceed.addEventListener("click", function(e) {
+        console.log(typeof(fee.value));
         e.preventDefault();
-        if (title.value.length < 5 | title.value === "Enter quiz title") {
+        if (title.value.length < 5 || title.value === "Enter quiz title") {
             title.style.borderBottomColor = "red";
             warning.appendChild(tooShort);
             background.style.top="380px";
@@ -42,11 +43,11 @@ document.addEventListener("DOMContentLoaded", function(){
             fake_button.style.top="405px";
             return false
         }
-        else if (title.style.borderBottomColor = "red" && warning.lastChild.innerText === tooShort.innerText) {
+        else if (title.style.borderBottomColor === "red" && warning.lastChild.innerText === tooShort.innerText) {
             title.style.borderBottomColor = "#e0dbf5";
             tooShort.parentElement.removeChild(tooShort);
         }
-        else if (title.style.borderBottomColor = "red" && warning.lastChild.innerText === tooLong.innerText) {
+        else if (title.style.borderBottomColor === "red" && warning.lastChild.innerText === tooLong.innerText) {
             title.style.borderBottomColor = "#e0dbf5";
             tooLong.parentElement.removeChild(tooLong);
         }
@@ -55,15 +56,18 @@ document.addEventListener("DOMContentLoaded", function(){
             category.style.borderBottomColor = "red";
             parentDiv.insertBefore(wrongCategory, category.nextSibling);
             return false
-        }
-        else if (category.style.borderBottomColor = "red" && category.value !== "Choose category") {
+        } else if (category.value !== "Choose category" && category.style.borderBottomColor === "red") {
             category.style.borderBottomColor = "#e0dbf5";
             wrongCategory.parentElement.removeChild(wrongCategory);
         }
-
-        if (fee.value.indexOf("£") === -1) {
-            fee.value = "£" + fee.value;
-        }
+        
         
     })
+
+    // fee.addEventListener("blur", function() {
+    //     if (fee.value.indexOf("£") === -1) {
+    //         fee.value = "£" + fee.value;
+    //         console.log(typeof(fee.value));
+    //     }
+    // })
 })
