@@ -13,7 +13,7 @@
                     <h1 class="titles">Your quiz details:</h1>
                     <label>Quiz title </label>
                     <input id="title" type="text" name="Title" value="Enter quiz title"/>
-                    <p>The title can't be longer than 50 chars.</p>
+                    <p id="warning">The title can't be longer than 50 chars.</p>
                     <label>Quiz logo</label><input id="files" type="file" name="Logo" accept="image/jpg,image/png"/>
                     <div id="files_background"></div>
                     <button id="fake_button">Upload custom logo</button>
@@ -23,11 +23,11 @@
                     <h1 class="titles">Select your quiz topic:</h1>
                     <label id="after">Category</label><select name="Category">
                         <option>Choose category</option>
-                        <option>Zwierzęta</option>
-                        <option>Rośliny</option>
-                        <option>Celebryci</option>
+                        <option>Celebs</option>
+                        <option>Cartoons</option>
+                        <option>Movies</option>
                     </select>
-                    <label id="fee_label">Quiz entry fee</label><input id="fee" type="number"/>
+                    <label id="fee_label">Quiz entry fee</label><input id="fee" value="£"/>
                     <p>Min. entry fee is £5.00</p>
                 </div>
             </div>
