@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var title = document.getElementById("title");
     var category = document.querySelector("select");
     var fee = document.getElementById("fee");
+    var files = document.getElementById("files");
     var proceed = document.getElementById("proceed");
     var warning = document.getElementById("warning");
     var tooShort = document.createElement("p");
@@ -27,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function(){
     })
 
     proceed.addEventListener("click", function(e) {
-        console.log(typeof(fee.value));
         e.preventDefault();
         if (title.value.length < 5 || title.value === "Enter quiz title") {
             title.style.borderBottomColor = "red";
@@ -51,7 +51,9 @@ document.addEventListener("DOMContentLoaded", function(){
             title.style.borderBottomColor = "#e0dbf5";
             tooLong.parentElement.removeChild(tooLong);
         }
+    })
 
+    proceed.addEventListener("click", function() {
         if (category.value === "Choose category") {
             category.style.borderBottomColor = "red";
             parentDiv.insertBefore(wrongCategory, category.nextSibling);
@@ -60,14 +62,31 @@ document.addEventListener("DOMContentLoaded", function(){
             category.style.borderBottomColor = "#e0dbf5";
             wrongCategory.parentElement.removeChild(wrongCategory);
         }
-        
-        
     })
 
-    // fee.addEventListener("blur", function() {
-    //     if (fee.value.indexOf("£") === -1) {
-    //         fee.value = "£" + fee.value;
-    //         console.log(typeof(fee.value));
-    //     }
-    // })
+    proceed.addEventListener("click", function() {
+        var valueToRound = parseFloat(fee.value);
+
+        if (isNaN(parseInt(fee.value)) && fee.value.indexOf("£") === -1 || parseInt(fee.value) < 0 || parseFloat(fee.value) < 5) {
+            fee.value = "£0.00";
+        } else if (fee.value.indexOf(".") === -1) {
+            fee.value = fee.value + ".00";
+        } else if (fee.value !== "£0.00" && fee.value.indexOf("£")) {
+            function Round (n, m) {
+                var factor = Math.pow(10, m);
+                return Math.round(n*factor)/factor;
+            }
+            fee.value = "£" + Round(valueToRound, 2);
+        }
+
+        if (fee.value.indexOf("£") === -1) {
+            fee.value = "£" + fee.value;
+        }
+    })
+
+    proceed.addEventListener("click", function() {
+        if (title.style.borderBottomColor !== "red" && category.style.borderBottomColor !== "red" && fee.value !== "£0.00" && files.value !== "") {
+            
+        }
+    })
 })
