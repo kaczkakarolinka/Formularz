@@ -13,9 +13,19 @@ document.addEventListener("DOMContentLoaded", function(){
     var form = document.querySelector("form");
     var yourTitle = document.createElement("h1");
     var yourCategory = document.createElement("p");
+    var yourCategoryValue = document.createElement("p");
     var yourFee = document.createElement("p");
+    var yourFeeValue = document.createElement("p");
     var yourImg = document.createElement("img");
     var container = document.getElementById("container");
+    var thankYou = document.createElement("h1");
+    var anotherOne = document.createElement("button");
+    var containerDiv = document.createElement("div");
+    var titleDiv = document.createElement("div");
+    var categoryDiv = document.createElement("div");
+    var buttonCont = document.createElement("div");
+    var imgDiv = document.createElement("div");
+    var feeDiv = document.createElement("div");
 
     var parentDiv = category.parentNode;
 
@@ -70,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 
-    proceed.addEventListener("click", function() {
+    fee.addEventListener("blur", function() {
         var valueToRound = parseFloat(fee.value);
 
         if (isNaN(parseInt(fee.value)) && fee.value.indexOf("£") === -1 || parseInt(fee.value) < 0 || parseFloat(fee.value) < 5) {
@@ -92,17 +102,51 @@ document.addEventListener("DOMContentLoaded", function(){
 
     proceed.addEventListener("click", function() {
         if (title.style.borderBottomColor !== "red" && category.style.borderBottomColor !== "red" && fee.value !== "£0.00" && files.value !== "") {
-            console.log(files.files[0].mozFullPath);
-           
             yourTitle.innerText = title.value;
-            yourCategory.innerText = category.value;
-            yourFee.innerText = fee.value;
-            yourImg.setAttribute("src", files.value);
+            yourCategory.innerText = "Quiz category";
+            yourCategoryValue.innerText = ": " + category.value;
+            yourFee.innerText = "Entry fee: ";
+            yourFeeValue.innerText = fee.value;
+            yourFeeValue.id = "feeValue";
+            thankYou.innerText = "Quiz created, thank you!";
+            anotherOne.innerText = "Create another one";
+            //próbowałam załączyć zdjęcie poprzez dodanie atrybutu "src" i przypisania
+            //do niego files.value, ale pojawiał się problem w postaci
+            // C://fakepath. Próbowałam go rozwiązać na kilka sposóbów znalezionych w internecie,
+            //ale żaden nie przyniósł pożądanego efektu,
+            //więc po prostu dodałam wyświetlanie nazwy pliku.
+            container.appendChild(thankYou);
+            container.appendChild(containerDiv);
+            containerDiv.id = "containerDiv";
+            containerDiv.appendChild(titleDiv);
+            titleDiv.id = "titleDiv";
+            containerDiv.appendChild(categoryDiv);
+            categoryDiv.id = "categoryDiv";
+            yourImg.setAttribute("src", "./3229335.jpg");
             form.parentElement.removeChild(form);
-            container.appendChild(yourTitle);
-            container.appendChild(yourCategory);
-            container.appendChild(yourFee);
-            container.appendChild(yourImg);
+            
+            categoryDiv.appendChild(yourCategory);
+            categoryDiv.appendChild(yourCategoryValue);
+            yourCategoryValue.style.fontWeight = "bold";
+            yourCategoryValue.className = "categoryStyle";
+            yourCategory.className = "categoryStyle";
+
+            titleDiv.appendChild(imgDiv);
+            titleDiv.appendChild(feeDiv);
+            imgDiv.appendChild(yourImg);
+            yourImg.id = "image";
+            feeDiv.appendChild(yourTitle);
+            feeDiv.appendChild(yourFee);
+            yourFee.style.display = "inline";
+            yourFee.style.color = "#42166a";
+            feeDiv.appendChild(yourFeeValue);
+            
+            container.appendChild(buttonCont);
+            buttonCont.appendChild(anotherOne);
+            yourTitle.id = "yourTitle";
+            thankYou.id = "thankYou";
+            buttonCont.className = "button";
+            anotherOne.id = "anotherButton";
         }
     })
 })
