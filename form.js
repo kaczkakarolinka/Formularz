@@ -10,6 +10,12 @@ document.addEventListener("DOMContentLoaded", function(){
     var wrongCategory = document.createElement("p");
     var background = document.getElementById("files_background");
     var fake_button = document.getElementById("fake_button");
+    var form = document.querySelector("form");
+    var yourTitle = document.createElement("h1");
+    var yourCategory = document.createElement("p");
+    var yourFee = document.createElement("p");
+    var yourImg = document.createElement("img");
+    var container = document.getElementById("container");
 
     var parentDiv = category.parentNode;
 
@@ -86,7 +92,17 @@ document.addEventListener("DOMContentLoaded", function(){
 
     proceed.addEventListener("click", function() {
         if (title.style.borderBottomColor !== "red" && category.style.borderBottomColor !== "red" && fee.value !== "£0.00" && files.value !== "") {
-            
+            console.log(files.files[0].mozFullPath);
+           
+            yourTitle.innerText = title.value;
+            yourCategory.innerText = category.value;
+            yourFee.innerText = fee.value;
+            yourImg.setAttribute("src", files.value);
+            form.parentElement.removeChild(form);
+            container.appendChild(yourTitle);
+            container.appendChild(yourCategory);
+            container.appendChild(yourFee);
+            container.appendChild(yourImg);
         }
     })
 })
